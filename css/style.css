@@ -182,10 +182,18 @@ body{
 .leftButton{
     height: 10vh;
     width: 49%;
+    font-family: Lemon\Milk;
+    text-transform: uppercase;
+    font-size: 30px;
+    line-height: 20px;
 }
 .rightButton{
     height: 10vh;
     width: 49%;
+    font-family: Lemon\Milk;
+    text-transform: uppercase;
+    font-size: 30px;
+    line-height: 20px;
 }
 
 button{
