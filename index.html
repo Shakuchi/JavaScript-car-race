@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <meta http-equiv="X-UA-Compatible" content="ie=edge">
+ <link rel="stylesheet" href="css/style.css">
+ <title>Car_racer</title>
+</head>
+<body>
+
+<div class="CarGame">
+
+<div class="startScreen">
+    <div class="startScreen_text">
+        <button class="startButton" onclick="start()"><img src="img/start-button.png"></button>
+    </div>
+</div>
+
+<div class="pauseScreen">
+     <div>
+         <img class="pauseScreen_text" src="img/pause_text.png">
+         <button class="resumeButton" onclick="resume()"><img src="img/pause_button__Big.png"></button>
+     </div>
+</div>
+
+<div class="endScreen">
+    <div class="endScreen_text">
+        <button class="restartButton" onclick="restart()"><img src="img/restart_button.png"></button>
+
+        <img class="result_text" src="img/result.png">
+
+        <div id="scoreBig" class="Score1">Очки: </div>
+    </div>
+</div>
+
+<div class="menu1">
+    <img class="menu1_background" src="img/score_tab.png">
+    <div id="scoreMini" class="Score2"></div>
+    <button class="pauseButton" onclick="pause()"><img src="img/pause_button.png"></button>
+</div>
+
+
+ <div class="GameArea">
+  <div class="Score">
+
+  </div>
+
+ </div>
+</div>
+
+<div class="phoneButton">
+    <button class="leftButton">222221</button>
+    <button class="rightButton">2</button>
+</div>
+
+<script src="js/game.js"></script>
+</body>
+</html>
