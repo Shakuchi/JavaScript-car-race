@@ -10,6 +10,8 @@ const rightButton = document.querySelector('.rightButton');
 
 let player={ speed:7,score1:0, score2: 0};
 
+let carColor = ["img/common_car1.png", "img/common_car2.png", "img/common_car3.png"];
+
 let keys={ArrowUp: false, ArrowDown: false, ArrowRight: false, ArrowLeft: false};
 
 let moveLeft;
@@ -62,7 +64,7 @@ function isCollide(a,b){
     aRect=a.getBoundingClientRect();
     bRect=b.getBoundingClientRect();
 
-    return !((aRect.bottom<bRect.top)||(aRect.top>bRect.bottom)||(aRect.right<bRect.left)||(aRect.left>bRect.right));
+    return !((aRect.bottom<bRect.top+5)||(aRect.top>bRect.bottom+5)||(aRect.right<bRect.left+5)||(aRect.left>bRect.right+5));
 }
 
 function collisionDetection(a, b) {
@@ -88,6 +90,7 @@ function endGame(){
 
 //Перемещение и появление других машины
 let road = 0;
+let carSpeed = 0;
 function moveCar(car){
     let other=document.querySelectorAll('.other');
     other.forEach(function(item){
@@ -95,12 +98,15 @@ function moveCar(car){
             endGame();
         }
         if(item.y>=750){
-            item.y=-300;
+            item.y=-400;
             const roads = [90, 195, 300, 405];
             road = roads[Math.floor(Math.random()*roads.length)];
             item.style.left= road + 'px';
+            item.style.backgroundImage = "url(" + carColor[Math.floor(Math.random()*3)] + ")";
             }
-        item.y+=player.speed;
+        let speeds = [6,7,8];
+        carSpeed = speeds[Math.floor(Math.random()*speeds.length)];
+        item.y+=carSpeed;
         item.style.top=item.y+'px';
     })
 }
@@ -110,7 +116,7 @@ function moveCar2(car) {
     rod.forEach(function(item){
         collisionDetection(car, item);
         if(item.y>=750){
-            item.y=-300;
+            item.y=-100;
             let roders = document.querySelectorAll('.rod')
             let rod2 = roders[0];
             rod2.style.display = "";
@@ -126,6 +132,17 @@ function moveCar2(car) {
     })
 }
 
+function moveHighWay() {
+    let highway = document.querySelectorAll('.background_highway');
+    highway.forEach(function (item) {
+        if(item.y>=1722){
+            item.y=-861;
+        }
+        item.y+=player.speed;
+        item.style.top=item.y+'px';
+    })
+}
+
 function gamePlay(){
 
     let car=document.querySelector('.car');
@@ -134,13 +151,14 @@ function gamePlay(){
     if(player.start){
         moveCar(car);
         moveCar2(car);
+        moveHighWay();
 
         //Контроллер
         if((keys.ArrowLeft || moveLeft) && player.x>0){
-            player.x-=player.speed;
+            player.x-=player.speed+3;
         }
         if((keys.ArrowRight || moveRight) && player.x<(road.width-80)){
-            player.x+=player.speed;
+            player.x+=player.speed+3;
         }
 
         car.style.top=player.y + 'px';
@@ -181,13 +199,11 @@ function game() {
     gamearea.appendChild(car);
 
     player.x=car.offsetLeft;
-    player.y=car.offsetTop;
-
 
     for(x=0;x<4;x++){
         let othercar=document.createElement('div');
         othercar.setAttribute('class','other');
-        othercar.y=((x+1)*350)* -1;
+        othercar.y=((x+1)*450)*-1;
         othercar.style.top=othercar.y+'px';
         const roads = [90, 195, 300, 405]
         let road = roads[Math.floor(Math.random()*roads.length)];
@@ -198,12 +214,21 @@ function game() {
     for(r=0;r<1;r++){
         let otherrod=document.createElement('div');
         otherrod.setAttribute('class', 'rod');
-        otherrod.y=((r+1)*350)* -1;
+        otherrod.y=((r+1)*350)*-1;
         otherrod.style.top=otherrod.y+'px';
         const roads = [90, 195, 300, 405]
         let road = roads[Math.floor(Math.random()*roads.length)];
         otherrod.style.left= road + 'px';
         gamearea.appendChild(otherrod);
+    }
+
+    for (hw=0;hw<2;hw++){
+        let highway = document.createElement('div');
+        highway.setAttribute('class', 'background_highway');
+        // highway.style.zIndex=1;
+        highway.y=((hw+1)*861)*-1;
+        highway.style.top=highway.y + 'px';
+        gamearea.appendChild(highway);
     }
 }
 

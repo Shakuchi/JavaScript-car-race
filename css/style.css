@@ -27,14 +27,19 @@ body{
 }
 
 .GameArea{
-    width: 550px;
+    width: 561px;
     height: 90vh;
     background-size: 100%, 20%;
     margin: auto;
     position: relative;
     overflow: hidden;
-    background-image: url("../img/background.png");
+    background-image: url("../img/background.gif");
 }
+/*.background_highway{*/
+/*    width: 550px;*/
+/*    height: 90vh;*/
+/*    image: url("../img/background.png");*/
+/*}*/
 
 .CarGame{
     width: 550px;
@@ -50,8 +55,7 @@ body{
 
 .other{
     width: 70px;
-    height: 150px;
-    /*background-color: blue;*/
+    height: 145px;
     background-image: url("../img/common_car1.png");
     position: absolute;
     bottom: 120px;
@@ -67,7 +71,6 @@ body{
 
 .menu1{
     z-index: 1;
-    /*margin-top: 15%;*/
     margin-left: 69%;
 }
 .menu1_background{
