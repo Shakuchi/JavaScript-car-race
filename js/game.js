@@ -191,8 +191,8 @@ function gamePlay(){
 
         if (keys.ArrowDown) {
             car.style.webkitTransform = "rotate(0deg)";
-            audio.muted = true;
-            musicDowner = 0;
+            // audio.muted = true;
+            // musicDowner = 0;
         }
 
         car.style.top=player.y + 'px';
@@ -276,7 +276,7 @@ function pause() {
 
     pausescreen.classList.remove('hide');
     menuscreen.classList.add('hide');
-    audio.muted = true;
+    // audio.muted = true;
     car.style.webkitTransform = "rotate(0deg)";
     player.start = false;
     player.pause = true;
@@ -285,7 +285,7 @@ function pause() {
 function resume() {
     pausescreen.classList.add('hide');
     menuscreen.classList.remove('hide');
-    audio.muted = true;
+    // audio.muted = true;
     player.start = true;
     player.pause = false;
 }
@@ -295,5 +295,6 @@ function restart() {
     pausescreen.classList.add('hide');
     endscreen.classList.add('hide');
     audio.muted=true;
+    musicDowner = 0;
     game();
 }
