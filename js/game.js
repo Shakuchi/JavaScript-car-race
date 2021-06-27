@@ -27,8 +27,14 @@ document.addEventListener('keyup',keyUp);
 leftButton.addEventListener('touchstart', leftButtonDown);
 leftButton.addEventListener('touchend', leftButtonUp);
 
+leftButton.addEventListener('mousedown', leftButtonDown);
+leftButton.addEventListener('mouseup', leftButtonUp);
+
 rightButton.addEventListener('touchstart', rightButtonDown);
 rightButton.addEventListener('touchend', rightButtonUp);
+
+rightButton.addEventListener('mousedown', rightButtonDown);
+rightButton.addEventListener('mouseup', rightButtonUp);
 
 
 function keyDown(ev){

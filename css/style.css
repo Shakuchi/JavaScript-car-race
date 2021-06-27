@@ -170,6 +170,14 @@ body{
     margin-top: 5%;
 }
 
+.phoneButton {
+    padding-left: 1%;
+    height: 10vh;
+    width: 561px;
+    background-color: #36a9b3;
+}
+
+
 .leftButton{
     height: 10vh;
     width: 49%;
