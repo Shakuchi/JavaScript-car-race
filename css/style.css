@@ -35,23 +35,11 @@ body{
     overflow: hidden;
     background-image: url("../img/background.gif");
 }
-/*.background_highway{*/
-/*    width: 550px;*/
-/*    height: 90vh;*/
-/*    image: url("../img/background.png");*/
-/*}*/
 
 .CarGame{
     width: 550px;
     height: 90vh;
 }
-
-/*@media (min-width: 720px) {*/
-/*    .CarGame {*/
-/*        width: 100vh;*/
-/*        height: 90vh;*/
-/*    }*/
-/*}*/
 
 .other{
     width: 70px;
