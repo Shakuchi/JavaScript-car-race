@@ -17,6 +17,9 @@ let keys={ArrowUp: false, ArrowDown: false, ArrowRight: false, ArrowLeft: false}
 let moveLeft;
 let moveRight;
 
+let audio = new Audio();
+let musicDowner = 0;
+
 pausescreen.classList.add('hide');
 endscreen.classList.add('hide');
 menuscreen.classList.add('hide');
@@ -90,6 +93,7 @@ function collisionDetection(a, b) {
 function endGame(){
     player.start=false;
     player.pause = false;
+    audio.muted = true;
     endscreen.classList.remove('hide')
     menuscreen.classList.add('hide');
 }
@@ -167,6 +171,30 @@ function gamePlay(){
             player.x+=player.speed+3;
         }
 
+        if (keys.ArrowRight && keys.ArrowUp && player.x<(road.width-80)){
+            car.style.webkitTransform = "rotate(40deg)";
+
+            musicDowner+=1;
+            if (musicDowner <= 1) {
+                audio.src = "music/phonke.mp3";
+                audio.autoplay = true;
+                // audio.loop = true;
+                audio.volume = 0.3;
+                audio.muted = false;
+            }
+        }
+
+        if (keys.ArrowLeft && keys.ArrowUp && player.x>0) {
+            car.style.webkitTransform = "rotate(320deg)";
+
+        }
+
+        if (keys.ArrowDown) {
+            car.style.webkitTransform = "rotate(0deg)";
+            audio.muted = true;
+            musicDowner = 0;
+        }
+
         car.style.top=player.y + 'px';
         car.style.left=player.x + 'px';
 
@@ -231,7 +259,6 @@ function game() {
     for (hw=0;hw<2;hw++){
         let highway = document.createElement('div');
         highway.setAttribute('class', 'background_highway');
-        // highway.style.zIndex=1;
         highway.y=((hw+1)*861)*-1;
         highway.style.top=highway.y + 'px';
         gamearea.appendChild(highway);
@@ -245,8 +272,12 @@ function start(){
 }
 
 function pause() {
+    let car=document.querySelector('.car');
+
     pausescreen.classList.remove('hide');
     menuscreen.classList.add('hide');
+    audio.muted = true;
+    car.style.webkitTransform = "rotate(0deg)";
     player.start = false;
     player.pause = true;
 }
@@ -254,6 +285,7 @@ function pause() {
 function resume() {
     pausescreen.classList.add('hide');
     menuscreen.classList.remove('hide');
+    audio.muted = true;
     player.start = true;
     player.pause = false;
 }
@@ -262,6 +294,6 @@ function restart() {
     startscreen.classList.add('hide');
     pausescreen.classList.add('hide');
     endscreen.classList.add('hide');
+    audio.muted=true;
     game();
 }
-
